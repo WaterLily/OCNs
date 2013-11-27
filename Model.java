@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
@@ -199,7 +198,7 @@ public class Model{
 		}
 		calcArea(start, true);
 		
-		Main.prl(start.area());
+		//System.out.println(start.area());
 		
 		for (ActionListener al : actionListeners)
 			al.actionPerformed(null);
