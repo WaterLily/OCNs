@@ -9,7 +9,6 @@ public class Cell{
 	int order;
 	double length; //distance to DD //not used - instead, model calculates lengths
 	int upl; //upstream length
-	Picture image;
 	HashSet<Cell> upstream;
 	public Cell(Tuple place){
 		this.place = place;
@@ -25,9 +24,6 @@ public class Cell{
 		//clone.setDD(dd.clone());
 		return clone;
 	}
-	public Picture getImage(){ return image; }
-	public void setImage(Picture image){ this.image = image; }
-	
 	public int hashCode() {
 		return place.hashCode();
 	}
