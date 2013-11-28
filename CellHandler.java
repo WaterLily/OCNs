@@ -1,13 +1,13 @@
-//adapted from NodeEdgeHandler.java
 import org.xml.sax.helpers.*; 
 import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler; //sort of worked
+import org.xml.sax.helpers.DefaultHandler;
+import javax.xml.parsers.*;
 //import org.apache.xerces.parsers.*; // for SAXParser
-import com.sun.org.apache.xerces.internal.parsers.SAXParser;
+//import com.sun.org.apache.xerces.internal.parsers.SAXParser;
 import java.util.HashMap;
 import java.util.Collection;
 //This class extends DefaultHandler and handles SAX events for us.
-//NodeHandler overloads startElement, startDocument, and endDocument from
+//CellHandler overloads startElement, startDocument, and endDocument from
 //DefaultHandler
 
 class CellHandler extends DefaultHandler{
@@ -18,7 +18,7 @@ class CellHandler extends DefaultHandler{
 	Collection<Cell> cells;
 	int currentId;
 	HashMap<Integer, Cell> idMap = new HashMap<Integer, Cell>();
-    public CellHandler(Collection cells){
+    public CellHandler(Collection<Cell> cells){
 		this.cells = cells;
 		someCoordsSpecified = false;
 		readNode = false;

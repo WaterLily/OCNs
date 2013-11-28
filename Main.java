@@ -13,7 +13,13 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.JFileChooser;
-import com.sun.org.apache.xerces.internal.parsers.SAXParser;
+
+import javax.xml.parsers.*;
+//import org.xml.sax.*;
+import org.xml.sax.helpers.*;
+import org.xml.sax.XMLReader;
+
+//import com.sun.org.apache.xerces.internal.parsers.SAXParser;
 import org.xml.sax.InputSource;
 public class Main{
 	static	StringBuilder output = new StringBuilder();
@@ -36,7 +42,7 @@ public class Main{
 			}
 		}
 		else if(args.length == 1){
-			pr("invalid arguments");
+			pr("invalid arguments: please use \"file\" to open a saved xgmml file, or give dimensions for a new random network.");
 			return;
 		}
 		else {
@@ -210,12 +216,17 @@ public class Main{
 	//returns a Model parsed from the argument String
 	public static Model readXGMML(String sourceString){
 		ArrayList<Cell> result = new ArrayList<Cell>();
-		try{
-			SAXParser parser = new SAXParser();
-			parser.setContentHandler(new CellHandler(result));
+		try{ /////////////
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setNamespaceAware(true);
+			SAXParser sp = spf.newSAXParser();
+			XMLReader xmlReader = sp.getXMLReader();
+			
+			//SAXParser parser = new SAXParser();
+			xmlReader.setContentHandler(new CellHandler(result));
 			StringReader s = new StringReader(sourceString);
 			InputSource is = new InputSource(s);
-			parser.parse(is);
+			xmlReader.parse(is);
 		}
 		catch(Exception e){
 			System.out.println("Syntax Error in XGMML description:\n" + e.toString());
