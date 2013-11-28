@@ -149,7 +149,7 @@ public class Main{
 			if(firstWord.startsWith("v")){ //toggle showing volumes
 				toUpdate.toggleVolumes();
 			}
-			if(firstWord.startsWith("u")){ //toggle showing upstream lengths
+			if(firstWord.startsWith("up")){ //toggle showing upstream lengths
 				toUpdate.toggleUPLs();
 			}
 			if(firstWord.startsWith("un")){ //give links unit length
@@ -178,7 +178,47 @@ public class Main{
 				}
 			}
 			if(firstWord.startsWith("h")){ //help //this doesn't describe all commands at the moment
-				pr("commands include: optimize, save, support, thickness, area, and help. \n Optimize takes optional arguments: \n  times to optimize (int) (must come first) \n  update \n  pause \n save takes one argument: \n  filename \n support takes one argument: \n  support area (int) \nThe smallest unique prefix of each is sufficient  \nfor all commands and string arguments (besides save).");
+				pr("commands include: optimize, save, support, depth, gamma, thickness, area, volume, upstream_lengths, unit_length, real_length, print, calculate, and help." + 
+					"\nThe smallest unique prefix of each is sufficient\n" + 
+					  "for all commands and string arguments." +
+					"\n--" +  
+					"\n optimize takes optional arguments:" + 
+					"\n  <int>: times to optimize (must come first;\n" + 
+					  "         if -1 is given, optimization will run till convergence)" + 
+					"\n  update: updates view as it optimizes" + 
+					"\n  pause: pauses between each optimization step for visual effect" + 
+					"\n--" + 
+					"\n save takes zero arguments, and saves three files:" + 
+					"\n  <given name>.xgmml: xgmml representation of current state of network" + 
+					"\n  <given name>2.xgmml: xgmml representation with coordinates scaled up,\n" + 
+					  "                       for use with certain graph viewing applications" + 
+					"\n  <given name>.desc: a description file including all the output\n" + 
+					  "                     from the session so far along with a user-entered\n" + 
+					  "                     description" + 
+					"\n--" + 
+					"\n thickness, area, volume, and upstream_lengths toggle display\n" + 
+					  " of respective properties" + 
+					"\n--" + 
+					"\n support requires one argument:" + 
+					"\n  <int>: support area" +
+					"\n--" + 
+					"\n depth requires one argument:" + 
+					"\n  <int>: desired z-axis slice of 3D network to display" +
+					"\n--" + 
+					"\n gamma requires one argument:" + 
+					"\n  <double>: desired gamma value" +					
+					"\n--" + 
+					"\n unit_length and real_length set the length of links\n" + 
+					  " to be units or Euclidean distances, respectively" +					
+					"\n--" + 
+					"\n print requires one argument from among the following,\n" + 
+					  " and prints out the requested data:" + 
+					"\n  a: areas" + 
+					"\n  v: volumes" + 
+					"\n  l: lengths" + 
+					"\n  o: orders" + 
+					"\n  d: drainage directions" + 
+					"\n  u: upstream lengths");
 			}
 			}catch(NumberFormatException nfe){ pr(nfe); continue; }
 		}
